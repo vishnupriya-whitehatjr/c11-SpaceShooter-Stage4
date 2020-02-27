@@ -1,0 +1,86 @@
+var space = createSprite(0, 0 ,400, 400);
+space.setAnimation("space");
+space.scale = 2.5;
+space.y = space.height/2;
+
+
+var player = createSprite(190, 375,20,20);
+player.setAnimation("animation_4");
+
+function draw() {
+  // background(10);
+  
+  
+  space.setAnimation("space");
+  player.x = World.mouseX;
+  createEdgeSprites();
+  player.collide(bottomEdge);
+  
+  space.velocityY = 2;
+  
+  if (space.y > 500) {
+    space.y = space.height/2;
+  }
+  
+  if (keyDown("space")) {
+    var temp_bullet = createBullet();
+    temp_bullet.shapeColor = "red";
+    temp_bullet.x = player.x;
+  }
+  
+  var select_enemy = randomNumber(0,3);
+  
+  if (World.frameCount % 100 == 0) {
+    if (select_enemy == 0) {
+      createGalaxian();
+    } else if (select_enemy == 1) {
+      createGalaxian1();
+    } else if (select_enemy == 2) {
+      createGalaxian2();
+    } else {
+      createGalaxian3();
+    }
+  }
+  
+  drawSprites();
+  
+}
+
+function createGalaxian() {
+  var galaxian = createSprite(randomNumber(0, 400), 0, 10, 10);
+  galaxian.setAnimation("animation_1");
+  galaxian.velocityY = 0.5;
+  galaxian.lifetime = 1000;
+}
+
+function createGalaxian1() {
+  var galaxian1 = createSprite(randomNumber(0, 400), 0, 10, 10);
+  galaxian1.setAnimation("animation_2");
+  galaxian1.velocityY = 0.7;
+  galaxian1.lifetime = 1000;
+}
+
+function createGalaxian2() {
+  var galaxian2 = createSprite(randomNumber(0, 400), 0, 10, 10);
+  galaxian2.setAnimation("animation_1");
+  galaxian2.velocityY = 0.8;
+  galaxian2.lifetime = 1000;
+}
+
+function createGalaxian3() {
+  var galaxian3 = createSprite(randomNumber(0, 400), 0, 10, 10);
+  galaxian3.setAnimation("animation_3");
+  galaxian3.velocityY = 1.0;
+  galaxian3.lifetime = 1000;
+}
+
+function createBullet() {
+  var bullet= createSprite(100, 100, 5, 10);
+  bullet.y = 360;
+  bullet.velocityY = -1;
+  bullet.lifetime = 1000;
+  return bullet;
+}
+
+
+code.org link : https://studio.code.org/projects/gamelab/VfDDxos2r--dwkVnFID-RHEYrpRZ6sZAoROiFiWD6Ns
